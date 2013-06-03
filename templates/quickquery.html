@@ -1,0 +1,33 @@
+$def with(results,get_url,pageargs)
+<div class="clstable">
+	<p1>查询结果 · · · · · · · · · ·</p1>
+		$if pageargs:
+			<table class="pager">
+				<tr>
+					<td><a href="$get_url=$pageargs[1]">首页</a></td>
+					$for p in pageargs[3:]:
+						$if p==pageargs[0]:
+							<td bgcolor=#99CCFF><a href="$get_url=$p">$p</a></td>
+						$else:
+							<td><a href="$get_url=$p">$p</a></td>
+					<td><a href="$get_url=$pageargs[2]">末页</a></td>
+				</td>
+				</tr>
+			</table>
+		<table class="roomtable">
+		<tr>
+			<th width=150px>教室</th>
+			<th width=100px>教室编号</th>
+			<th width=100px>座位数</th>
+			<th width=150px>教室类型</th>
+		</tr>
+		$for cls in results:
+			<tr>
+				<td>$cls.roomname</td>
+				<td>$cls.roomid</td>
+				<td>$cls.seatcount</td>
+				<td>$cls.roomtype</td>
+			</tr>
+		</table>
+		
+	</div>

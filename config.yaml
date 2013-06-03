@@ -1,0 +1,11 @@
+name: ahuzixi
+version: 1
+
+handlers:
+- url: /static
+  static_dir: static
+
+cron:
+- description:update newsdb
+  url:updatedb
+  schedule:every 12 hours

@@ -1,0 +1,16 @@
+$def with(results=[])
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>安徽大学空余教室查询系统手机版</title>
+</head>
+<body>
+安徽大学空余教室查询系统
+<p><a href="/wap">返回教室查询</a></p>
+<p>今日安大、中科大宣讲会信息如下：</p>
+	<ul>
+	$for result in results:
+		<li>
+			<p>$result.companyname...$result.xjdate...$result.xjtime...$result.school$result.location</p>
+		</li>
+	</ul>

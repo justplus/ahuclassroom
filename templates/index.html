@@ -1,0 +1,153 @@
+$def with(results,POST=False,args=[],errorflag='',get_url='',pageargs=[])
+$code
+	tempargs=[]
+	for i in args:
+		if i:
+			tempargs.append('checked="checked"')
+		else:
+			tempargs.append('')
+
+<div class="querytable">
+	<form action="/queryrooms" method="get">
+		<table>
+			<tr>
+				<th>教学楼：</th>
+				<td>
+					<input type="checkbox" name="buildingname" value="博学南楼A" $tempargs[0]/>
+					<label>博南A楼</label>
+					<input type="checkbox" name="buildingname" value="博学南楼B" $tempargs[1]/>
+					<label>博南B楼</label>
+					<input type="checkbox" name="buildingname" value="博学南楼C" $tempargs[2]/>
+					<label>博南C楼</label>
+					<input type="checkbox" name="buildingname" value="博学南楼D" $tempargs[3]/>
+					<label>博南D楼</label>
+				</td>
+			</tr>
+			<tr>
+				<th></th>
+				<td>
+					<input type="checkbox" name="buildingname" value="博学北楼A" $tempargs[4]/>
+					<label>博北A楼</label>
+					<input type="checkbox" name="buildingname" value="博学北楼B" $tempargs[5]/>
+					<label>博北B楼</label>
+					<input type="checkbox" name="buildingname" value="博学北楼C" $tempargs[6]/>
+					<label>博北C楼</label>
+				</td>
+			</tr>
+			<tr>
+				<th>楼  层：</th>
+				<td>
+					<input type="checkbox" name="floor" value="1" $tempargs[7]/>
+					<label>1楼</label>
+					<input type="checkbox" name="floor" value="2" $tempargs[8]/>
+					<label>2楼</label>
+					<input type="checkbox" name="floor" value="3" $tempargs[9]/>
+					<label>3楼</label>
+					<input type="checkbox" name="floor" value="4" $tempargs[10]/>
+					<label>4楼</label>
+					<input type="checkbox" name="floor" value="5" $tempargs[11]/>
+					<label>5楼</label>
+				</td>
+			</tr>
+			<tr>
+				<th>座位数：</th>
+				<td>
+					<input type="checkbox" name="seat" value="1" $tempargs[12]/>
+					<label>0-50</label>
+					<input type="checkbox" name="seat" value="2" $tempargs[13]/>
+					<label>50-100</label>
+					<input type="checkbox" name="seat" value="3" $tempargs[14]/>
+					<label>100-150</label>
+					<input type="checkbox" name="seat" value="4" $tempargs[15]/>
+					<label>150-200</label>
+					<input type="checkbox" name="seat" value="5" $tempargs[15]/>
+					<label>>200</label>
+				</td>
+			</tr>
+			<tr>
+				<th>类  型：</th>
+				<td>
+					<input type="checkbox" name="roomtype" value="普通教室" $tempargs[16]/>
+					<label>普通教室</label>
+					<input type="checkbox" name="roomtype" value="多媒体教室" $tempargs[17]/>
+					<label>多媒体教室</label>
+					<input type="checkbox" name="roomtype" value="考研自习室" $tempargs[18]/>
+					<label>考研自习室</label>
+				</td>
+			</tr>
+			<tr>
+				<th>日  期：</th>
+				<td>
+					<input type="text" name="search_date" id="search_date" style="width:80px" value="$args[19]"/>
+					<img onclick="WdatePicker({el:'search_date'})" src="/static/datePicker/skin/datePicker.gif" width="16" height="22" align="absmiddle"/>
+				</td>
+			</tr>
+			<tr>
+				<th>起始点：</th>
+				<td>
+					<input type="text" name="search_start_time" id="search_start_time" style="width:80px" value="$args[20]"/>
+					<img onclick="WdatePicker({el:'search_start_time',dateFmt:'HH:mm'})" src="/static/datePicker/skin/datePicker.gif" width="16" height="22" align="absmiddle" />
+				</td>
+			</tr>
+			<tr>
+				<th>结束点：</th>
+				<td>
+					<input type="text" name="search_end_time" id="search_end_time" style="width:80px" value="$args[21]"/>
+					<img onclick="WdatePicker({el:'search_end_time',dateFmt:'HH:mm'})" src="/static/datePicker/skin/datePicker.gif" width="16" height="22" align="absmiddle" />
+					<input type="submit" value="查询"/>
+					$errorflag
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>	
+	$if POST==False:
+		<div class="querytips">
+			<h1>注意事项：</h1>
+			<p>1.由于博学南楼E和博学北楼D为报告厅，因此欲查询就业信息，请到“<a href="/queryborrow" target="_blank">借用查询</a>”中查询；</p>
+			<p>2.教室类型分为整学期均无课的“考研自习室”和有课程的“普通教室”(无多媒体设备)、“多媒体教室”；</p>
+			<p>3.欲查询某一教室的课表情况，请转向“<a href="/queryschedule" target="_blank">课表查询</a>”菜单；</p>
+			<p align="left">4.教师调换教室、社团院系借用教室，请到“<a href="/queryborrow" target="_blank">借用查询</a>”菜单认真填写借用通知单，经教室管理部门通过申请后方可使用；</p>
+			<p>5.为方便毕业班同学就业，“<a href="/querynotice" target="_blank">新闻公告</a>”中可以查询“安徽大学”、“中国科技大学”、<del>“合肥工业大学”</del>(因抓取工大就业网信息不够稳定，所以暂时没有添加)三所高校的宣讲会情况；</p>
+			<p>6.手机wap版入口可以扫描二维码喽;<img src="/static/new.png" width="23" height="11" align="absmiddle"/></p>
+			<p>7.考研自习室数据加紧搜集中...<img src="/static/new.png" width="23" height="11" align="absmiddle"/></p>
+			<p>8.请同学们合理使用自习室资源。</p>
+			<p2>9.手机版新增"今日宣讲会查询"<img src="/static/new.png" width="23" height="11" align="absmiddle"/></p2>
+			<br/>
+			<p><img src="/static/chart.png" width="160" height="160"/></p>
+		</div>
+	$else:
+		<div class="clstable">
+			<h1>查询结果 · · · · · · · · · ·</h1>
+			$if pageargs:
+				<div>
+					<table class="pager">
+						<tr>
+							<td><a href="$get_url=$pageargs[1]">首页</a></td>
+							$for p in pageargs[3:]:
+								$if p==pageargs[0]:
+									<td bgcolor=#99CCFF><a href="$get_url=$p">$p</a></td>
+								$else:
+									<td><a href="$get_url=$p">$p</a></td>
+							<td><a href="$get_url=$pageargs[2]">末页</a></td>
+						</tr>
+					</table>
+				</div>
+			<div>
+				<table class="roomtable">
+					<tr>
+						<th width=150px>教室</th>
+						<th width=100px>教室编号</th>
+						<th width=100px>座位数</th>
+						<th width=150px>教室类型</th>
+					</tr>
+					$for cls in results:
+						<tr>
+							<td><a href="/queryschedule?search_schedule_date=$args[19]&search_schedule_building=$cls.buildingname&search_schedule_room=$cls.roomname[-3:]">$cls.roomname</a></td>
+							<td>$cls.roomid</td>
+							<td>$cls.seatcount</td>
+							<td>$cls.roomtype</td>
+						</tr>
+				</table>
+			</div>
+		</div>

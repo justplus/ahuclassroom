@@ -1,0 +1,110 @@
+$def with(pagecontent)
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wb=“http://open.weibo.com/wb”>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>安徽大学空余教室查询系统</title>
+		<link href="/static/default.css" rel="stylesheet" type="text/css" />
+		<link rel="bookmark" type="image/x-icon" href="/static/logo.ico"/>
+		<link rel="shortcut icon" href="/static/logo.ico">
+		<link rel="icon" href="/static/logo.ico">
+		<script type="text/javascript" src="/static/datePicker/WdatePicker.js"></script>
+		<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="header">
+			<div class="header_logo">
+				 <a href="/" onfocus="blur()"><img src="/static/logo.png" alt="自习" border="0"></a>
+			</div>
+			<div class="header_nav">
+				<ul>
+					<li><a target="_self" class="lnk_roomsearch" href="/">自习室查询</a></li>
+					<li><a target="_self" class="lnk_classsearch" href="queryschedule">课表查询</a></li>
+					<li><a target="_self" class="lnk_tmpusesearch" href="/queryborrow">借用查询</a></li>
+					<li><a target="_self" class="lnk_notice" href="/querynotice">新闻公告</a></li>
+					<li><a target="_blank" class="lnk_mobilecls" href="/wap">手机版入口</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+			<div class="main_content">
+				$:pagecontent
+			</div>
+			<div class="side_content">
+				<h1>快速查询 · · · · · · · · · ·</h1>
+				<div class="side_content_form">
+					<form action="/quickquery" method="get">
+						<table>
+							<tr>
+								<th>
+									教学楼：
+								</th>
+								<td>
+									<select name="building">
+										<option value="博学南楼A">博南A楼</option>
+										<option value="博学南楼B">博南B楼</option>
+										<option value="博学南楼C">博南C楼</option>
+										<option value="博学南楼D">博南D楼</option>
+										<option value="博学北楼A">博北A楼</option>
+										<option value="博学北楼B">博北B楼</option>
+										<option value="博学北楼C">博北C楼</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									起始点：
+								</th>
+								<td>
+									<select name="start">
+										<option value="0">现在</option>
+										<option value="5">5分钟后</option>
+										<option value="10">10分钟后</option>
+										<option value="20">20分钟后</option>
+										<option value="30">30分钟后</option>
+										<option value="60">1小时后</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									持续时间：
+								</th>
+								<td>
+									<select name="dura">
+										<option value="0">半小时</option>
+										<option value="1">1小时</option>
+										<option value="2">2小时</option>
+										<option value="3">3小时</option>
+										<option value="4">4小时</option>
+										<option value="-1">整个时间段</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2"><input id="search_button" type="submit" value="查询" size="80"/></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<h1>意见反馈· · · · · · · · · · ·</h1>
+					<p>亲，如果有好的建议或者意见，请反馈回来哦！电子邮件:justplus AT ahu.edu.cn，当然微博私信也是可以滴!另外，如果您有贡献精神，熟悉python或web.py框架，欢迎您的加入，我们共同完善！</p2>
+					<p><wb:follow-button uid="1653175584" type="red_2" width="136" height="24" ></wb:follow-button></p>
+				<h1>常用链接· · · · · · · · · · ·</h1>
+					<ul>
+						<li><a href="http://www.ahu.edu.cn" target="_blank">安徽大学</a></li>
+						<li><a href="http://jwc.ahu.edu.cn/main/" target="_blank">安徽大学教务处</a></li>
+						<li><a href="http://www.job.ahu.edu.cn/" target="_blank">安徽大学就业网</a></li>
+						<li><a href="http://www.lib.ahu.edu.cn/" target="_blank">安徽大学图书馆</a></li>
+						<li><a href="http://bbs.ahu.edu.cn/" target="_blank">安青在线论坛</a></li>
+						<li><a href="http://e.weibo.com/ahu" target="_blank">安徽大学官方微博</a></li>
+						<li><a href="http://weibo.com/745824265" target="_blank">justplus的微博</a></li>
+					</ul>
+					
+			</div>
+		</div>
+		<div id="footer">
+			<p>Copyright &copy; 2012-2013. All rights reserved. Author:justplus.</p>
+		</div>
+	</body>
+</html>

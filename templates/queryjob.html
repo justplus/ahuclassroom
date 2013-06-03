@@ -1,0 +1,39 @@
+$def with(results,pageargs)
+<div class=jobnetlist>
+	<p1>宣讲会信息列表</p1>
+	<p2>更多宣讲会和就业信息请访问：</p2>
+	<ul>
+		<li>
+			<a href="http://www.job.ahu.edu.cn/" target="_blank">安徽大学就业网</a>
+		</li>
+		<li>
+			<a href="http://www.job.ustc.edu.cn/" target="_blank">中国科技大学就业网</a>
+		</li>
+		<li>
+			<a href="http://gdjy.hfut.edu.cn/" target="_blank">合肥工业大学就业信息网</a>
+		</li>
+</ul>
+</div>
+$if pageargs:
+	<table class="pager">
+		<tr>
+			<td><a href="/queryjob/page=$pageargs[1]">首页</a></td>
+			$for p in pageargs[3:]:
+				$if p==pageargs[0]:
+					<td bgcolor=#99CCFF><a href="/queryjob/page=$p">$p</a></td>
+				$else:
+					<td><a href="/queryjob/page=$p">$p</a></td>
+			<td><a href="/queryjob/page=$pageargs[2]">末页</a></td>
+			</td>
+		</tr>
+	</table>
+<div class="joblist">
+	<ul>
+	$for result in results:
+		<li>
+			<p class="temp">
+			<a href=$result.urlhref target="_blank">$result.companyname</a><span>$result.xjdate</span>&nbsp&nbsp&nbsp&nbsp$result.xjtime&nbsp&nbsp&nbsp&nbsp$result.school$result.location
+			</p>
+		</li>
+	</ul>
+</div>

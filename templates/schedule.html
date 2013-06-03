@@ -1,0 +1,67 @@
+$def with(states,errorflag='',args=[])
+$code
+	selectedstates=[]
+	for i in range(7):
+		if i==args[1]:
+			selectedstates.append('selected="selected"')
+		else:
+			selectedstates.append('')
+
+
+<div class="querytable">
+	<form action="/queryschedule" method="get">
+		<table>
+			<tr>
+				<th>日期：</th>
+				<td>
+					<input type="text" name="search_schedule_date" id="search_schedule_date" style="width:80px" value="$args[0]"/>
+					<img onclick="WdatePicker({el:'search_schedule_date'})" src="/static/datePicker/skin/datePicker.gif" width="16" height="22" align="absmiddle" />
+				</td>
+			</tr>
+			<tr>
+				<th>教室：</th>
+				<td>
+					<select name="search_schedule_building">
+						<option value="博学南楼A" $selectedstates[0]>博南A楼</option>
+						<option value="博学南楼B" $selectedstates[1]>博南B楼</option>
+						<option value="博学南楼C" $selectedstates[2]>博南C楼</option>
+						<option value="博学南楼D" $selectedstates[3]>博南D楼</option>
+						<option value="博学北楼A" $selectedstates[4]>博北A楼</option>
+						<option value="博学北楼B" $selectedstates[5]>博北B楼</option>
+						<option value="博学北楼C" $selectedstates[6]>博北C楼</option>
+					</select>
+					<input type="text" name="search_schedule_room" style="width:60px" value="$args[2]"/>
+					<input type="submit" value="查询"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>		
+$if states:
+		<div class=scheduletable>
+			<table>
+				<tr>
+					<th>节次</th>
+					<th>星期一</th>
+					<th>星期二</th>
+					<th>星期三</th>
+					<th>星期四</th>
+					<th>星期五</th>
+					<th>星期六</th>
+					<th>星期日</th>
+				</tr>
+				$for ro in range(11):
+					$if ro==4 or ro==8:
+						<tr height=5px></tr>
+					
+					<tr>
+						<th>$(ro+1)</th>
+						$for co in range(7):
+							$if states[11*co+ro]==1:
+								<td bgcolor="#f0490e"></td>
+							$elif states[11*co+ro]==2:
+								<td bgcolor="#2e963d"></td>
+					</tr>
+			</table>
+			<p>说明：红色表示该教室有课，绿色表示教室空闲</p>
+		</div>

@@ -1,0 +1,36 @@
+$def with(webresults,jwcresults,jobresults)
+	<div class="weblist">
+		<p1>站内公告</p1>
+		$for result in webresults:
+			<ul>
+				<li>
+				<p2>$result.title</p2>($result.pubtime&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp$result.pubperson)
+				</li>
+			</ul>
+			<div class=webcontent>
+				<p3>$result.content</p3>
+			</div>
+	</div>	
+	<div class="jwclist">
+		<p1><a href="http://jwc.ahu.edu.cn/main/notice.asp" target="_blank">教务处通知公告</a><span>(点击小标题查看更多)</span></p1>
+		<ul>
+		$for result in jwcresults:
+			<li>
+				<p>
+				<a href=$result.linkhref target="_blank">$result.title</a>
+				$result.publishtime
+				</p>
+			</li>
+		</ul>
+	</div>
+	<div class="jwclist">
+		<p1><a href="/queryjob/page=1" target="_blank">宣讲会信息</a><span>(点击小标题查看更多)</span></p1>
+		<ul>
+		$for result in jobresults:
+			<li>
+				<p class="temp">
+				<a href=$result.urlhref target="_blank">$result.companyname</a><span>$result.xjdate</span>&nbsp&nbsp&nbsp&nbsp$result.xjtime&nbsp&nbsp&nbsp&nbsp$result.school$result.location
+				</p>
+			</li>
+		</ul>
+	</div>
